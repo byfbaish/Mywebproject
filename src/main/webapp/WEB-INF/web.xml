@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	version="3.1">
+
+	<display-name>Application</display-name>
+	<servlet>
+		<!--自定义，一般为类名 -->
+		<servlet-name>servletDemo1</servlet-name>
+		<!--一定是package + .类名 -->
+		<servlet-class>ysx.main.start</servlet-class>
+	</servlet>
+	<!--给Servlet提供（映射)一个可供客户端访问的URI -->
+	<servlet-mapping>
+		<!--和servlet中的name必须相同 -->
+		<servlet-name>servletDemo1</servlet-name>
+		<!-- servlet的映射路径 -->
+		<url-pattern>/start/*</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>javax.ws.rs.core.Application</servlet-name>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>javax.ws.rs.core.Application</servlet-name>
+		<url-pattern>/*</url-pattern>
+	</servlet-mapping>
+
+	<!-- myfilter -->
+	<filter>
+		<display-name>requestFilter</display-name>
+		<filter-name>requestFilter</filter-name>
+		<filter-class>ysx.filter.requestFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>requestFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
+
+</web-app>
