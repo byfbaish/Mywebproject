@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
@@ -21,8 +21,8 @@ import ysx.tool.reader;
 @Path("/")
 public class myApplication {
 
-    @GET
-    @Path("/bao-deposit/v1.2.0/installmentTimeDeposit/payout")
+    @POST
+    @Path("/test")
     @Consumes({ MediaType.APPLICATION_JSON })
     @Produces({ MediaType.APPLICATION_JSON })
     public Response post(@Context HttpServletRequest servletRequest, @Context HttpServletResponse servletResponse) {

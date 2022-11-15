@@ -10,16 +10,16 @@ public class DbManger {
     Connection connection = null;
     String jndiName = "jdbc/defaultD";
 
-    public static Connection getConnection() {
+    public static Connection getConnection() throws Exception {
         //
-        DataSourcePool.getDbConnection();
+        // DataSourcePool.getDbConnection();
 
         //
 
-        return getConnection();
+        return getConnection("jdbc/defaultDS");
     }
 
-    private Connection getConnection(String jndiName) throws Exception {
+    private static Connection getConnection(String jndiName) throws Exception {
 
         Context ctx = new InitialContext();
         DataSource ds = (DataSource) ctx.lookup(jndiName);

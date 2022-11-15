@@ -4,44 +4,58 @@
     <featureManager>
         <feature>javaee-7.0</feature>
         <feature>localConnector-1.0</feature>
-    	<feature>microProfile-1.3</feature>
-    	<feature>mpFaultTolerance-1.0</feature>
+        <feature>microProfile-1.3</feature>
+        <feature>mpFaultTolerance-1.0</feature>
     </featureManager>
-    <opentracingZipkin host="localhost" port="9411"/>
+    <opentracingZipkin host="localhost" port="9411" />
 
 
     <basicRegistry id="basic" realm="BasicRealm">
-        <!-- <user name="yourUserName" password="" />  -->
+        <!-- <user name="yourUserName" password="" /> -->
     </basicRegistry>
 
-    <httpEndpoint host="*" httpPort="9080" httpsPort="9443" id="defaultHttpEndpoint"/>
+    <httpEndpoint host="*" httpPort="9080" httpsPort="9443" id="defaultHttpEndpoint" />
 
-    <applicationManager autoExpand="true" startTimeout="90s" stopTimeout="90s"/>
+    <applicationManager autoExpand="true" startTimeout="90s" stopTimeout="90s" />
 
-    <applicationMonitor updateTrigger="mbean"/>
+    <applicationMonitor updateTrigger="mbean" />
 
     <webContainer disableXPoweredBy="true" />
 
     <application type="war" id="AIF" location="mywebapp.war" name="mywebapp" context-root="/">
-    	<classloader apiTypeVisibility="spec,ibm-api,api,stable,third-party" commonLibraryRef="failsafe"/>
-		<web-ext enable-directory-browsing="false" enable-file-serving="false"/>
+        <classloader apiTypeVisibility="spec,ibm-api,api,stable,third-party" commonLibraryRef="failsafe" />
+        <web-ext enable-directory-browsing="false" enable-file-serving="false" />
     </application>
 
     <library id="failsafe" apiTypeVisibility="spec,ibm-api,api,stable,third-party">
-        <fileset dir="${wlp.install.dir}/lib" id="failsafe-fileset" includes="com.ibm.ws.net.jodah.failsafe.*.jar"/>
+        <fileset dir="${wlp.install.dir}/lib" id="failsafe-fileset" includes="com.ibm.ws.net.jodah.failsafe.*.jar" />
     </library>
-    
+
     <library id="DB2JCC4Lib">
-        <fileset dir="lib" includes="db2jcc4.jar"/>
-    </library>    
-   
-    <dataSource id="default" jndiName="jdbc/defaultDS">
-        <jdbcDriver libraryRef="mysqlLib"/>
-        <properties.db2.jcc databaseName="${env.MYSQL_DATABASE_NAME}" password="${env.MYSQL_DATABASE_PASSWORD}" portNumber="${env.MYSQL_DATABASE_PORT}" serverName="${env.MYSQL_DATABASE_HOST}" user="${env.MYSQL_DATABASE_USER}" />
+        <fileset dir="lib" includes="db2jcc4.jar db2jcc_license_cu.jar" />
+    </library>
+    <dataSource id="0129" jndiName="jdbc/0129DS">
+        <jdbcDriver libraryRef="DB2JCC4Lib" />
+        <properties.db2.jcc databaseName="${env.DATABASE_NAME}" password="${env.DATABASE_PASSWORD}" portNumber="${env.DATABASE_PORT}" serverName="${env.DATABASE_HOST}" user="${env.DATABASE_USER}" sslConnection="true" sslCertLocation="${env.CERT}" />
     </dataSource>
-    
-     <library id="mysqlLib">
-        <fileset dir="lib" includes="mysql-connector-java-8.0.28.jar"/>
-     </library> 
-     
+    <dataSource id="0130" jndiName="jdbc/0130DS">
+        <jdbcDriver libraryRef="DB2JCC4Lib" />
+        <properties.db2.jcc databaseName="${env.DATABASE_NAME}" password="${env.DATABASE_PASSWORD}" portNumber="${env.DATABASE_PORT}" serverName="${env.DATABASE_HOST}" user="${env.DATABASE_USER}" sslConnection="true" sslCertLocation="${env.CERT}" />
+    </dataSource>
+    <dataSource id="default" jndiName="jdbc/defaultDS">
+        <jdbcDriver libraryRef="mysqlLib" />
+        <properties databaseName="${env.MYSQL_DATABASE_NAME}" password="${env.MYSQL_DATABASE_PASSWORD}" portNumber="${env.MYSQL_DATABASE_PORT}" serverName="${env.MYSQL_DATABASE_HOST}" user="${env.MYSQL_DATABASE_USER}" />
+    </dataSource>
+    <library id="mysqlLib">
+        <fileset dir="lib" includes="mysql-connector-java-8.0.28.jar" />
+    </library>
+
+    <dataSource id="default" jndiName="jdbc/defaultDS">
+        <jdbcDriver libraryRef="mysqlLib" />
+        <properties databaseName="${env.MYSQL_DATABASE_NAME}" password="${env.MYSQL_DATABASE_PASSWORD}" portNumber="${env.MYSQL_DATABASE_PORT}" serverName="${env.MYSQL_DATABASE_HOST}" user="${env.MYSQL_DATABASE_USER}" />
+    </dataSource>
+    <library id="mysqlLib">
+        <fileset dir="lib" includes="mysql-connector-java-8.0.28.jar" />
+    </library>
+
 </server>
