@@ -7,7 +7,7 @@
 	version="1.0">
 
 	<reload-interval value="3"/>
-	<context-root uri="resource" />
+	<context-root uri="app" />
 	<enable-directory-browsing value="false"/>
 	<enable-file-serving value="true"/>
 	<enable-reloading value="true"/>

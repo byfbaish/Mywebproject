@@ -33,7 +33,7 @@ public class myApplication {
         try {
             body = reader.getString(request.getInputStream());
         } catch (Exception e) {
-            // TODO: handle exception
+
             e.printStackTrace();
         }
         String sqlString = "DELETE FROM MOCK_CONTROL";

@@ -1,4 +1,6 @@
 -Dconsole.encoding=UTF-8
 -Dfile.encoding=UTF-8
--Duser.language=zn
+-Duser.language=zh
 -Duser.country=CN
+-Ddb2.jcc.charsetDecoderEncoder=3
+-Duser.timezone=Asia/Shanghai

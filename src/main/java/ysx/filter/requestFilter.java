@@ -13,13 +13,13 @@ import javax.servlet.http.HttpServletRequest;
 public class requestFilter implements Filter {
 
     public void init(FilterConfig filterConfig) throws ServletException {
-        // TODO Auto-generated method stub
+
         System.out.print("this is requestFilter.init");
     }
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
-        // TODO Auto-generated method stub
+
         HttpServletRequest hsReq = (HttpServletRequest) request;
         System.out.print("this is requestFilter.doFilter");
         String urlString = hsReq.getRequestURL().toString();
@@ -33,7 +33,7 @@ public class requestFilter implements Filter {
     }
 
     public void destroy() {
-        // TODO Auto-generated method stub
+
         System.out.print("this is requestFilter.destroy");
     }
 
